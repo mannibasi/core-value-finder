@@ -45,5 +45,21 @@ namespace CoreValueFinderTests
 
             Assert.AreEqual(3, engine.GetCoreValues().FirstOrDefault().GetRating());
         }
+
+        [TestMethod]
+        public void TestMultipleCoreValueRatings()
+        {
+            var engine = new CoreValueEngine();
+            engine.Add(new CoreValue("Abundance"));
+            engine.Add(new CoreValue("Accomplishment"));
+
+            engine.GetCoreValueForRating();
+            engine.RateCoreValue(3);
+            engine.GetCoreValueForRating();
+            engine.RateCoreValue(4);
+
+            Assert.AreEqual(3, engine.GetCoreValues().FirstOrDefault().GetRating());
+            Assert.AreEqual(4, engine.GetCoreValues().LastOrDefault().GetRating());
+        }
     }
 }

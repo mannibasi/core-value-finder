@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace CoreValueFinder
@@ -7,7 +6,7 @@ namespace CoreValueFinder
     public class CoreValueEngine
     {
         private readonly List<CoreValue> coreValues = new List<CoreValue>();
-        private CoreValue coreValue = null;
+        private int currentCoreValueElementPosition = 0;
 
         public CoreValueEngine()
         {
@@ -25,16 +24,13 @@ namespace CoreValueFinder
 
         public string GetCoreValueForRating()
         {
-            //TODO:
-            this.coreValue = coreValues.FirstOrDefault();
-            return this.coreValue.GetDescription();
+            return this.coreValues.ElementAt(currentCoreValueElementPosition).GetDescription();
         }
 
         public void RateCoreValue(int rating)
         {
-            //TODO:
-            this.coreValue = coreValues.FirstOrDefault();
-            this.coreValue.Rate(rating);
+            this.coreValues.ElementAt(currentCoreValueElementPosition).Rate(rating);
+            currentCoreValueElementPosition++;
         }
     }
 }
