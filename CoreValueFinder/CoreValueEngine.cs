@@ -5,6 +5,9 @@ namespace CoreValueFinder
 {
     public class CoreValueEngine
     {
+        private const int ROUND_1_RATING_THRESHOLD = 3;
+        private const int ROUND_2_RATING_THRESHOLD = 6;
+
         private readonly List<CoreValue> coreValues = new List<CoreValue>();
         private int currentCoreValueElementPosition = 0;
 
@@ -29,8 +32,21 @@ namespace CoreValueFinder
 
         public void RateCoreValue(int rating)
         {
-            this.coreValues.ElementAt(currentCoreValueElementPosition).Rate(rating);
-            currentCoreValueElementPosition++;
+            this.coreValues.ElementAt(currentCoreValueElementPosition).Rate(rating);       
+            if (currentCoreValueElementPosition < this.coreValues.Count)
+            {
+                currentCoreValueElementPosition++;
+            }
+        }
+
+        public void RoundOneValueElimination()
+        {
+            this.coreValues.RemoveAll(cv => cv.GetRating() < ROUND_1_RATING_THRESHOLD);
+        }
+
+        public void RoundTwoValueElimination()
+        {
+            this.coreValues.RemoveAll(cv => cv.GetRating() < ROUND_2_RATING_THRESHOLD);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoreValueFinder
+﻿namespace CoreValueFinder
 {
     public class CoreValue
     {
