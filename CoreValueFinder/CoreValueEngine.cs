@@ -48,5 +48,10 @@ namespace CoreValueFinder
         {
             this.coreValues.RemoveAll(cv => cv.GetRating() < ROUND_2_RATING_THRESHOLD);
         }
+
+        public void PrepareForValueRating()
+        {
+            currentCoreValueElementPosition = 0;
+        }
     }
 }

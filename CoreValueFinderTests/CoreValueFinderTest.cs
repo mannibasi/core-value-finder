@@ -96,7 +96,7 @@ namespace CoreValueFinderTests
         }
 
         [TestMethod]
-        public void TestRoundOneAndTwoValuesFilter()
+        public void TestRoundTwoRetrievalOfValueForRating()
         {
             var engine = new CoreValueEngine();
             engine.Add(new CoreValue("Abundance"));
@@ -113,13 +113,9 @@ namespace CoreValueFinderTests
 
             engine.RoundOneValueElimination();
 
-            Assert.AreEqual(4, engine.GetCoreValues().Count);
+            engine.PrepareForValueRating();
 
-            engine.RoundTwoValueElimination();
-
-            //TODO: rate values again...
-
-            Assert.AreEqual(3, engine.GetCoreValues().Count);
+            Assert.AreEqual("Abundance", engine.GetCoreValueForRating());
         }
     }
 }
