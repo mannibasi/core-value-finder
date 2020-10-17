@@ -117,5 +117,35 @@ namespace CoreValueFinderTests
 
             Assert.AreEqual("Abundance", engine.GetCoreValueForRating());
         }
+
+        [TestMethod]
+        public void TestRoundTwoValuesFilter()
+        {
+            var engine = new CoreValueEngine();
+            engine.Add(new CoreValue("Abundance"));
+            engine.Add(new CoreValue("Acceptance"));
+            engine.Add(new CoreValue("Accessibility"));
+            engine.Add(new CoreValue("Accomplishment"));
+            engine.Add(new CoreValue("Accuracy"));
+
+            engine.RateCoreValue(3);
+            engine.RateCoreValue(2);
+            engine.RateCoreValue(7);
+            engine.RateCoreValue(7);
+            engine.RateCoreValue(7);
+
+            engine.RoundOneValueElimination();
+
+            engine.PrepareForValueRating();
+
+            engine.RateCoreValue(4);
+            engine.RateCoreValue(5);
+            engine.RateCoreValue(6);
+            engine.RateCoreValue(7);
+
+            engine.RoundTwoValueElimination();
+
+            Assert.AreEqual(2, engine.GetCoreValues().Count);
+        }
     }
 }

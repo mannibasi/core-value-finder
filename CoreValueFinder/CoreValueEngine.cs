@@ -9,7 +9,7 @@ namespace CoreValueFinder
         private const int ROUND_2_RATING_THRESHOLD = 6;
 
         private readonly List<CoreValue> coreValues = new List<CoreValue>();
-        private int currentCoreValueElementPosition = 0;
+        private int currentCoreValueElementPosition;
 
         public CoreValueEngine()
         {
