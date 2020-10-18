@@ -147,5 +147,26 @@ namespace CoreValueFinderTests
 
             Assert.AreEqual(2, engine.GetCoreValues().Count);
         }
+
+        [TestMethod]
+        public void TestParsingOfValidZeroIntegerConsoleInput()
+        {
+            Finder finder = new Finder();
+            Assert.IsTrue(finder.RatingIsValid("0"));
+        }
+
+        [TestMethod]
+        public void TestParsingOfValidNonZeroIntegerConsoleInput()
+        {
+            Finder finder = new Finder();
+            Assert.IsTrue(finder.RatingIsValid("3"));
+        }
+
+        [TestMethod]
+        public void TestParsingOfInvalidIntegerConsoleInput()
+        {
+            Finder finder = new Finder();
+            Assert.IsFalse(finder.RatingIsValid("abc"));
+        }
     }
 }
