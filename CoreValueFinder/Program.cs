@@ -37,28 +37,22 @@ namespace CoreValueFinder
             PrintCoreValues(engine);
         }
 
-        private static CoreValueEngine DefaultCoreValueEngine()
-        {
-            var cve = new CoreValueEngine();
-            cve.Add(new CoreValue("Abundance"));
-            cve.Add(new CoreValue("Acceptance"));
-            cve.Add(new CoreValue("Accessibility"));
-            cve.Add(new CoreValue("Accomplishment"));
-            cve.Add(new CoreValue("Accuracy"));
-            return cve;
-        }
-
         private void CaptureValueRatings(CoreValueEngine engine)
         {
             Console.Clear();
             Console.WriteLine("Please (re-)rate remaining values on a scale of zero to ten:");
             foreach (var cv in engine.GetCoreValues())
             {
-                Console.WriteLine(cv.GetDescription());
-                string input = Console.ReadLine();
-                if (RatingIsValid(input))
+                bool validRating = false;
+                while(!validRating)
                 {
-                    cv.Rate(parsedRatingInput);
+                    Console.WriteLine(cv.GetDescription());
+                    string input = Console.ReadLine();
+                    if (RatingIsValid(input))
+                    {
+                        cv.Rate(parsedRatingInput);
+                        validRating = true;
+                    }
                 }
             }
         }
@@ -77,6 +71,17 @@ namespace CoreValueFinder
                     "chip away at it some more until you only have about 10 values on your list. " +
                     "Make that part of who you are and know that this is your code (or map) to your best life.");
             }
+        }
+
+        private static CoreValueEngine DefaultCoreValueEngine()
+        {
+            var cve = new CoreValueEngine();
+            cve.Add(new CoreValue("Abundance"));
+            cve.Add(new CoreValue("Acceptance"));
+            cve.Add(new CoreValue("Accessibility"));
+            cve.Add(new CoreValue("Accomplishment"));
+            cve.Add(new CoreValue("Accuracy"));
+            return cve;
         }
     }
 }
