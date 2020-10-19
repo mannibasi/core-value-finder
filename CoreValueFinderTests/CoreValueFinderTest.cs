@@ -77,12 +77,7 @@ namespace CoreValueFinderTests
         [TestMethod]
         public void TestRoundOneValuesFilter()
         {
-            var engine = new CoreValueEngine();
-            engine.Add(new CoreValue("Abundance"));
-            engine.Add(new CoreValue("Acceptance"));
-            engine.Add(new CoreValue("Accessibility"));
-            engine.Add(new CoreValue("Accomplishment"));
-            engine.Add(new CoreValue("Accuracy"));
+            CoreValueEngine engine = TestCoreValueEngine();
 
             engine.RateCoreValue(3);
             engine.RateCoreValue(2);
@@ -98,12 +93,7 @@ namespace CoreValueFinderTests
         [TestMethod]
         public void TestRoundTwoRetrievalOfValueForRating()
         {
-            var engine = new CoreValueEngine();
-            engine.Add(new CoreValue("Abundance"));
-            engine.Add(new CoreValue("Acceptance"));
-            engine.Add(new CoreValue("Accessibility"));
-            engine.Add(new CoreValue("Accomplishment"));
-            engine.Add(new CoreValue("Accuracy"));
+            CoreValueEngine engine = TestCoreValueEngine();
 
             engine.RateCoreValue(3);
             engine.RateCoreValue(2);
@@ -121,12 +111,7 @@ namespace CoreValueFinderTests
         [TestMethod]
         public void TestRoundTwoValuesFilter()
         {
-            var engine = new CoreValueEngine();
-            engine.Add(new CoreValue("Abundance"));
-            engine.Add(new CoreValue("Acceptance"));
-            engine.Add(new CoreValue("Accessibility"));
-            engine.Add(new CoreValue("Accomplishment"));
-            engine.Add(new CoreValue("Accuracy"));
+            CoreValueEngine engine = TestCoreValueEngine();
 
             engine.RateCoreValue(3);
             engine.RateCoreValue(2);
@@ -148,25 +133,33 @@ namespace CoreValueFinderTests
             Assert.AreEqual(2, engine.GetCoreValues().Count);
         }
 
+        private static CoreValueEngine TestCoreValueEngine()
+        {
+            var engine = new CoreValueEngine();
+            engine.Add(new CoreValue("Abundance"));
+            engine.Add(new CoreValue("Acceptance"));
+            engine.Add(new CoreValue("Accessibility"));
+            engine.Add(new CoreValue("Accomplishment"));
+            engine.Add(new CoreValue("Accuracy"));
+            return engine;
+        }
+
         [TestMethod]
         public void TestParsingOfValidZeroIntegerConsoleInput()
         {
-            Finder finder = new Finder();
-            Assert.IsTrue(finder.RatingIsValid("0"));
+            Assert.IsTrue(new Finder().RatingIsValid("0"));
         }
 
         [TestMethod]
         public void TestParsingOfValidNonZeroIntegerConsoleInput()
         {
-            Finder finder = new Finder();
-            Assert.IsTrue(finder.RatingIsValid("3"));
+            Assert.IsTrue(new Finder().RatingIsValid("3"));
         }
 
         [TestMethod]
         public void TestParsingOfInvalidIntegerConsoleInput()
         {
-            Finder finder = new Finder();
-            Assert.IsFalse(finder.RatingIsValid("abc"));
+            Assert.IsFalse(new Finder().RatingIsValid("abc"));
         }
     }
 }
