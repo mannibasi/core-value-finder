@@ -161,5 +161,11 @@ namespace CoreValueFinderTests
         {
             Assert.IsFalse(new Finder().RatingIsValid("abc"));
         }
+
+        [TestMethod]
+        public void TestDefaultValueEngineHasValues()
+        {
+            Assert.AreNotEqual(0, Finder.DefaultCoreValueEngine().GetCoreValues().Count);
+        }
     }
 }
